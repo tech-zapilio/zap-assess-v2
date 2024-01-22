@@ -1,0 +1,23 @@
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+
+.otp_input_feild{
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+  color:#fd5400;
+  margin:4px
+}
+
+.otp_input_feild:focus{
+ outline: none;
+}
+.otp_input_feild:focus-within {
+  border: 1px solid #fd5400;
+}

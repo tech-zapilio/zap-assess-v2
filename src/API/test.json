@@ -1,0 +1,184 @@
+[
+  {
+    "_id": "651e584ff84b4e9572c2ab26",
+    "isActive": true,
+    "score": 6,
+    "answered": 20,
+    "skipped": 0,
+    "scored": 6,
+    "timeTaken": "02:14",
+    "attempts": 0,
+    "sentAt": "2023-10-05T06:31:43.413Z",
+    "summary": [
+      {
+        "skill": "Employee Wellness",
+        "count": 1,
+        "score": 0,
+        "pct": 0,
+        "_id": "651e58daf84b4e9572c2ad21"
+      },
+      {
+        "skill": "Onboarding",
+        "count": 3,
+        "score": 1,
+        "pct": 33.33333333333333,
+        "_id": "651e58daf84b4e9572c2ad22"
+      },
+      {
+        "skill": "Employee Engagement",
+        "count": 3,
+        "score": 1,
+        "pct": 33.33333333333333,
+        "_id": "651e58daf84b4e9572c2ad23"
+      },
+      {
+        "skill": "HR Management",
+        "count": 2,
+        "score": 2,
+        "pct": 100,
+        "_id": "651e58daf84b4e9572c2ad24"
+      },
+      {
+        "skill": "Performance Management",
+        "count": 2,
+        "score": 0,
+        "pct": 0,
+        "_id": "651e58daf84b4e9572c2ad25"
+      },
+      {
+        "skill": "Policies and Procedures",
+        "count": 2,
+        "score": 0,
+        "pct": 0,
+        "_id": "651e58daf84b4e9572c2ad26"
+      },
+      {
+        "skill": "Recruitment and Selection",
+        "count": 2,
+        "score": 1,
+        "pct": 50,
+        "_id": "651e58daf84b4e9572c2ad27"
+      },
+      {
+        "skill": "Compensation and Benefits",
+        "count": 2,
+        "score": 0,
+        "pct": 0,
+        "_id": "651e58daf84b4e9572c2ad28"
+      },
+      {
+        "skill": "Training and Development",
+        "count": 3,
+        "score": 1,
+        "pct": 33.33333333333333,
+        "_id": "651e58daf84b4e9572c2ad29"
+      }
+    ],
+    "user": {
+      "_id": "64faa9ead74fa071dc059ead",
+      "email": "yogesh.sharma@ipl.edu.in",
+      "displayName": "Yogesh Sharma"
+    },
+
+    "accessedAt": "2023-10-05T06:31:43.413Z",
+    "createdAt": "2023-10-05T06:31:43.607Z",
+    "updatedAt": "2023-10-05T06:34:02.347Z",
+    "expiresAt": "2023-10-06T06:31:43.413Z",
+    "completedAt": "2023-10-05T06:34:02.146Z",
+    "status": "Complete",
+    "stage": "Selection",
+    "__v": 1,
+    "notes": "[Zapilio]: Assessment Marked COMPLETE"
+  },
+  {
+    "_id": "651e584ff84b4e9572c2ab26",
+    "isActive": true,
+    "score": 6,
+    "answered": 20,
+    "skipped": 0,
+    "scored": 6,
+    "timeTaken": "02:14",
+    "attempts": 0,
+    "sentAt": "2023-10-05T06:31:43.413Z",
+    "summary": [
+      {
+        "skill": "Employee Wellness",
+        "count": 1,
+        "score": 0,
+        "pct": 0,
+        "_id": "651e58daf84b4e9572c2ad21"
+      },
+      {
+        "skill": "Onboarding",
+        "count": 3,
+        "score": 1,
+        "pct": 33.33333333333333,
+        "_id": "651e58daf84b4e9572c2ad22"
+      },
+      {
+        "skill": "Employee Engagement",
+        "count": 3,
+        "score": 1,
+        "pct": 33.33333333333333,
+        "_id": "651e58daf84b4e9572c2ad23"
+      },
+      {
+        "skill": "HR Management",
+        "count": 2,
+        "score": 2,
+        "pct": 100,
+        "_id": "651e58daf84b4e9572c2ad24"
+      },
+      {
+        "skill": "Performance Management",
+        "count": 2,
+        "score": 0,
+        "pct": 0,
+        "_id": "651e58daf84b4e9572c2ad25"
+      },
+      {
+        "skill": "Policies and Procedures",
+        "count": 2,
+        "score": 0,
+        "pct": 0,
+        "_id": "651e58daf84b4e9572c2ad26"
+      },
+      {
+        "skill": "Recruitment and Selection",
+        "count": 2,
+        "score": 1,
+        "pct": 50,
+        "_id": "651e58daf84b4e9572c2ad27"
+      },
+      {
+        "skill": "Compensation and Benefits",
+        "count": 2,
+        "score": 0,
+        "pct": 0,
+        "_id": "651e58daf84b4e9572c2ad28"
+      },
+      {
+        "skill": "Training and Development",
+        "count": 3,
+        "score": 1,
+        "pct": 33.33333333333333,
+        "_id": "651e58daf84b4e9572c2ad29"
+      }
+    ],
+    "user": {
+      "_id": "64faa9ead74fa071dc059ead",
+      "email": "yogesh.singh@ipl.edu.in",
+      "displayName": "Mark Singh"
+    },
+
+    "accessedAt": "2023-10-05T06:31:43.413Z",
+    "createdAt": "2023-10-05T06:31:43.607Z",
+    "updatedAt": "2023-10-05T06:34:02.347Z",
+    "expiresAt": "2023-10-06T06:31:43.413Z",
+    "completedAt": "2023-10-05T06:34:02.146Z",
+    "status": "Complete",
+    "stage": "Selection",
+    "__v": 1,
+    "notes": "[Zapilio]: Assessment Marked COMPLETE"
+  }
+]
