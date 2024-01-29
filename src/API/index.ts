@@ -4,7 +4,7 @@ import { config } from "./constant";
 import { GetAssessmentData } from "../Types/app-types";
 const baseURL = config();
 const API = axios.create({
-  baseURL: `${baseURL}api`,
+  baseURL: `${baseURL}v3`,
 });
 
 type EventParams = {

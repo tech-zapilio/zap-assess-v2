@@ -19,6 +19,6 @@ export function config(_env?: ENV): string {
       url: "https://1e09-14-141-145-82.ngrok-free.app/",
     },
   ];
-  const url = urls.find((url) => url.env === "local")?.url || "";
+  const url = urls.find((url) => url.env === "dev")?.url || "";
   return url;
 }
