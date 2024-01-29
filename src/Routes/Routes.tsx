@@ -10,15 +10,15 @@ import Assessment from "../Views/Private/Assessment/Assessment";
 import Completed from "../Views/Private/Assessment/Completed";
 import AssessmentDetails from "../Views/Private/AssessmentDetails/AssessmentDetails";
 import LandingPage from "../Views/Common/LandingPage/LandingPage";
-
+//localhost:5103/applicant/applicantid/applicantcode
+///localhost:5173/event/jobId/jobCode
 export const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/">
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<NotFoundPage />} />
         <Route path="applicant/:applicant/:code" element={<LandingPage />} />
         <Route path="event/:event/:code" element={<LandingPage />} />
-
         {/* src */}
       </Route>
       <Route element={<AssessmentRoutes />}>

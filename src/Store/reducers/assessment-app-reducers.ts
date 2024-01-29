@@ -1,9 +1,16 @@
-import { Question, QuestionIndex, QuestionStatus } from "../../Types/assessment-app-types";
+import { GetAssessmentData } from "../../Types/app-types";
+import {
+  Question,
+  QuestionIndex,
+  QuestionStatus,
+} from "../../Types/assessment-app-types";
 import { AssessmentDetails } from "../../Types/child-types";
 import { ActionType } from "../action-types";
 import { Action } from "../actions";
 
 export type AssessmentAppType = {
+  //ASSESSMENT
+  verifyCandidateResponse: GetAssessmentData;
   userAssessmentId: string;
   assessmentLib: AssessmentDetails;
   questions: QuestionIndex[];
@@ -79,10 +86,71 @@ const initAssessmentState: AssessmentAppType = {
       __v: 0,
     },
   },
+  verifyCandidateResponse: {
+    applicant: {
+      _id: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      sentAt: "",
+      expiresAt: "",
+      status: "",
+      stage: "",
+      type: "",
+      job: {
+        _id: "",
+        retrySKIP: false,
+        bRandQuestion: false,
+        bDisplayReport: false,
+        isFullScreen: false,
+        isSubjectiveEval: false,
+        bAllowSkip: false,
+        jobCode: "",
+        shortDesc: "",
+        status: "",
+        assessmentLib: {
+          _id: "",
+          type: "",
+          description: "",
+        },
+      },
+      assessment: {
+        _id: "",
+        instructions: [],
+        totalQuestions: 0,
+        totalTime: 0,
+        settings: [],
+        name: "",
+        image: "",
+      },
+      customer: {
+        name: "",
+        logoURL: "",
+        welcomeVideoURL: "",
+        termsConditions: "",
+      },
+      attempts: 0,
+      accessedAt: "",
+      updatedAt: "",
+    },
+    lastAttempt: {
+      answered: 0,
+      skipped: 0,
+      timeElapsed: "",
+    },
+    customer: {
+      name: "",
+      logoURL: "",
+      welcomeVideoURL: "",
+      termsConditions: "",
+    },
+    authToken: "",
+    mapping: [],
+  },
 };
 
 function initQuestions(no_of_questions: number) {
-  const questions = [];
+  const questions: QuestionIndex[] = [];
   for (let i = 1; i <= no_of_questions; i++) {
     questions.push({
       index: i,
@@ -96,9 +164,14 @@ function initQuestions(no_of_questions: number) {
   return questions;
 }
 
-function insertQuestion(questions: QuestionIndex[], newQuestion: QuestionIndex) {
+function insertQuestion(
+  questions: QuestionIndex[],
+  newQuestion: QuestionIndex
+) {
   const updatedQuestions = questions.map((q) =>
-    q.index === newQuestion.index ? { ...newQuestion, isAnswered: false, isSkipped: false, answer: "" } : q
+    q.index === newQuestion.index
+      ? { ...newQuestion, isAnswered: false, isSkipped: false, answer: "" }
+      : q
   );
   return updatedQuestions;
 }
@@ -111,19 +184,31 @@ function updated_question_after_submission(
   currentQuestion: QuestionIndex,
   submitted_question: QuestionIndex
 ) {
-  const updated_questions = questions.map((q) => (q.index === submitted_question.index ? submitted_question : q));
+  const updated_questions = questions.map((q) =>
+    q.index === submitted_question.index ? submitted_question : q
+  );
   const current_question =
     currentQuestion.index === submitted_question.index
-      ? { ...currentQuestion, isAnswered: submitted_question.isAnswered, isSkipped: submitted_question.isSkipped }
+      ? {
+          ...currentQuestion,
+          isAnswered: submitted_question.isAnswered,
+          isSkipped: submitted_question.isSkipped,
+        }
       : currentQuestion;
   return { questions: updated_questions, currentQuestion: current_question };
 }
 
 //
 //
-function update_question_status(currentQuestion: QuestionIndex, questions: QuestionIndex[], status: QuestionStatus) {
+function update_question_status(
+  currentQuestion: QuestionIndex,
+  questions: QuestionIndex[],
+  status: QuestionStatus
+) {
   const updated_questions = questions.map((q) =>
-    q.index === status.index ? { ...q, isAnswered: status.isAnswered, isSkipped: status.isSkipped } : q
+    q.index === status.index
+      ? { ...q, isAnswered: status.isAnswered, isSkipped: status.isSkipped }
+      : q
   );
 
   const current_question = currentQuestion;
@@ -136,13 +221,26 @@ function update_question_status(currentQuestion: QuestionIndex, questions: Quest
 
 //
 //
-function get_question_by_index(questions: QuestionIndex[], questionIndex: number) {
+function get_question_by_index(
+  questions: QuestionIndex[],
+  questionIndex: number
+) {
   return questions.find((q) => q.index === questionIndex) as QuestionIndex;
 }
 //
 //
-const assessment_app_reducers = (state: AssessmentAppType = initAssessmentState, action: Action): AssessmentAppType => {
+const assessment_app_reducers = (
+  state: AssessmentAppType = initAssessmentState,
+  action: Action
+): AssessmentAppType => {
   switch (action.type) {
+    case ActionType.VERIFY_CANDIDATE:
+      return {
+        ...state,
+        verifyCandidateResponse: action.payload,
+      };
+    case ActionType.CLEAR_PREV_ASSESSMENT:
+      return initAssessmentState;
     case ActionType.START_ASSESSMENT:
       return {
         ...state,
@@ -173,21 +271,39 @@ const assessment_app_reducers = (state: AssessmentAppType = initAssessmentState,
       return { ...state, currentQuestion: action.payload };
 
     case ActionType.UPDATE_ANSWER:
-      return { ...state, currentQuestion: { ...state.currentQuestion, answer: action.payload } };
+      return {
+        ...state,
+        currentQuestion: { ...state.currentQuestion, answer: action.payload },
+      };
 
     case ActionType.UPDATE_QUESTION_STATUS:
       return {
         ...state,
-        questions: update_question_status(state.currentQuestion, state.questions, action.payload).questions,
-        currentQuestion: update_question_status(state.currentQuestion, state.questions, action.payload).currentQuestion,
+        questions: update_question_status(
+          state.currentQuestion,
+          state.questions,
+          action.payload
+        ).questions,
+        currentQuestion: update_question_status(
+          state.currentQuestion,
+          state.questions,
+          action.payload
+        ).currentQuestion,
       };
 
     case ActionType.SUBMIT_ANSWER:
       return {
         ...state,
-        questions: updated_question_after_submission(state.questions, state.currentQuestion, action.payload).questions,
-        currentQuestion: updated_question_after_submission(state.questions, state.currentQuestion, action.payload)
-          .currentQuestion,
+        questions: updated_question_after_submission(
+          state.questions,
+          state.currentQuestion,
+          action.payload
+        ).questions,
+        currentQuestion: updated_question_after_submission(
+          state.questions,
+          state.currentQuestion,
+          action.payload
+        ).currentQuestion,
       };
 
     case ActionType.SHOW_REVIEW:
@@ -209,7 +325,10 @@ const assessment_app_reducers = (state: AssessmentAppType = initAssessmentState,
       return { ...state, drawerOpen: false };
 
     case ActionType.LOAD_QUESTION_BY_INDEX:
-      return { ...state, currentQuestion: get_question_by_index(state.questions, action.payload) };
+      return {
+        ...state,
+        currentQuestion: get_question_by_index(state.questions, action.payload),
+      };
 
     default:
       return state;

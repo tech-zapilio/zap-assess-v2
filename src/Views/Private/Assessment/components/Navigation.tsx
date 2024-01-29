@@ -237,22 +237,22 @@ const Navigation = () => {
     }
   }
 
-  function allQuestionsLoadedAndSkippedLeft() {
-    //all questions loaded && current Question is skipped && more Skipped questions are there
-    const loaded_questions = questions.filter(
-      (q) => q.question?._id?.length > 0
-    );
-    const skipped_questions = questions.filter(
-      (q) => q.isSkipped && q.index !== currentQuestion.index
-    );
-    const isCurrentQuestionSKipped = currentQuestion.isSkipped;
+  // function allQuestionsLoadedAndSkippedLeft() {
+  //   //all questions loaded && current Question is skipped && more Skipped questions are there
+  //   const loaded_questions = questions.filter(
+  //     (q) => q.question?._id?.length > 0
+  //   );
+  //   const skipped_questions = questions.filter(
+  //     (q) => q.isSkipped && q.index !== currentQuestion.index
+  //   );
+  //   const isCurrentQuestionSKipped = currentQuestion.isSkipped;
 
-    return (
-      loaded_questions.length === questions.length &&
-      skipped_questions.length > 1 &&
-      isCurrentQuestionSKipped
-    );
-  }
+  //   return (
+  //     loaded_questions.length === questions.length &&
+  //     skipped_questions.length > 1 &&
+  //     isCurrentQuestionSKipped
+  //   );
+  // }
 
   //
   //
@@ -308,8 +308,7 @@ const Navigation = () => {
       mt={4}
       direction="row"
       alignItems="center"
-      justifyContent="space-between"
-    >
+      justifyContent="space-between">
       <LoadingButton
         disabled={
           (currentQuestion.isSkipped && !isSkip) ||
@@ -319,8 +318,7 @@ const Navigation = () => {
         loading={isSkipping}
         onClick={handleSkip}
         size="large"
-        variant="outlined"
-      >
+        variant="outlined">
         {currentQuestion.isSkipped && isSkip ? "Skip" : "Revisit Later"}
       </LoadingButton>
 
@@ -329,8 +327,7 @@ const Navigation = () => {
         disabled={!answer}
         onClick={handleNext}
         size="large"
-        variant="contained"
-      >
+        variant="contained">
         Submit
       </LoadingButton>
     </Stack>

@@ -27,9 +27,7 @@ const question_container_styles = {
 const Assessment = () => {
   const dispatch = useDispatch();
   const isSmallScreen = useMediaQuery("(max-width:600px)");
-  const { userAssessmentId, questions, endsOn } = useAppSelector(
-    (state) => state.assessment_app
-  );
+  const { questions, endsOn } = useAppSelector((state) => state.assessment_app);
 
   useEffect(() => {
     dispatch({ type: ActionType.END_QUESTION_LOADING });
@@ -43,7 +41,7 @@ const Assessment = () => {
   async function getFirstQuestion() {
     try {
       dispatch({ type: ActionType.START_QUESTION_LOADING });
-      const { data } = await get_first_question(userAssessmentId);
+      const { data } = await get_first_question();
       if (data) {
         dispatch({
           type: ActionType.GET_QUESTION,
@@ -66,25 +64,12 @@ const Assessment = () => {
         <Header />
       </Stack>
       <ReviewModal />
-      <Grid
-        px={{ xs: 2, md: 8 }}
-        mt={4}
-      >
-        <Grid
-          container
-          columnSpacing={6}
-        >
+      <Grid px={{ xs: 2, md: 8 }} mt={4}>
+        <Grid container columnSpacing={6}>
           {!isSmallScreen && (
-            <Grid
-              item
-              md={2}
-            >
+            <Grid item md={2}>
               <Stack alignItems="center">
-                <Stack
-                  px={8}
-                  pt={4}
-                  pb={2}
-                >
+                <Stack px={8} pt={4} pb={2}>
                   {endsOn && <Timer />}
                 </Stack>
 
@@ -94,16 +79,9 @@ const Assessment = () => {
               </Stack>
             </Grid>
           )}
-          <Grid
-            item
-            xs={12}
-            md={10}
-          >
+          <Grid item xs={12} md={10}>
             <Grid>
-              <Grid
-                p={{ xs: 2, md: 5 }}
-                sx={question_container_styles}
-              >
+              <Grid p={{ xs: 2, md: 5 }} sx={question_container_styles}>
                 <Container maxWidth="md">
                   <Grid>
                     <QuestionContainer />

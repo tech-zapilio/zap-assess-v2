@@ -1,8 +1,21 @@
-import { CircularProgress, Grid, Skeleton, Stack, Typography, useMediaQuery } from "@mui/material";
+import {
+  CircularProgress,
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { useAppSelector } from "../../../../App/hooks";
 import QuestionType from "./question-types/QuestionType";
 
-type QuestionType = "pickOne" | "pickMulti" | "rank" | "switch" | "slider" | "pickOneImage" | "text";
+type QuestionType =
+  | "pickOne"
+  | "pickMulti"
+  | "rank"
+  | "switch"
+  | "slider"
+  | "pickOneImage"
+  | "text";
 
 const questionHints = {
   pickOne: "Choose the most accurate option",
@@ -19,10 +32,17 @@ const QuestionDetails = () => {
 
   return (
     <Stack spacing={1}>
-      <Typography sx={{ textTransform: "uppercase" }} variant="s16w6c700" color="primary">
+      <Typography
+        sx={{ textTransform: "uppercase" }}
+        variant="s16w6c700"
+        color="primary">
         {currentQuestion.question.competency}
       </Typography>
-      <Stack mb={1} direction={{ xs: "column", md: "row" }} alignItems="baseline" spacing={1}>
+      <Stack
+        mb={1}
+        direction={{ xs: "column", md: "row" }}
+        alignItems="baseline"
+        spacing={1}>
         {!isSmallScreen && (
           <Typography variant="s28w6c800" color="primary">
             Q{currentQuestion.index}.
@@ -31,7 +51,9 @@ const QuestionDetails = () => {
         <Stack width="100%">
           <Typography variant={isSmallScreen ? "s20w6c600" : "s28w6c800"}>
             {isSmallScreen && (
-              <Typography variant={isSmallScreen ? "s20w6c600" : "s28w6c800"} color="primary">
+              <Typography
+                variant={isSmallScreen ? "s20w6c600" : "s28w6c800"}
+                color="primary">
                 Q{currentQuestion.index}.&nbsp;
               </Typography>
             )}
@@ -39,7 +61,11 @@ const QuestionDetails = () => {
             {currentQuestion.question.question}
           </Typography>
           <Typography variant="s14w5c400" fontWeight={500}>
-            {questionHints[currentQuestion.question.questionType as QuestionType]}
+            {
+              questionHints[
+                currentQuestion.question.questionType as QuestionType
+              ]
+            }
           </Typography>
           <QuestionType />
         </Stack>

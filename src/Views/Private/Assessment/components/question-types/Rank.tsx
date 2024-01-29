@@ -3,6 +3,7 @@ import { useAppSelector } from "../../../../../App/hooks";
 import { useDispatch } from "react-redux";
 import { ActionType } from "../../../../../Store/action-types";
 import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { JSX } from "react/jsx-runtime";
 
@@ -24,6 +25,7 @@ const Rank = () => {
 
   const theme = useTheme();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleOrder(result: any) {
     const destination = result.destination.index;
     const source = result.source.index;
@@ -49,7 +51,10 @@ const Rank = () => {
               React.HTMLAttributes<HTMLUListElement>;
             innerRef: React.LegacyRef<HTMLUListElement> | undefined;
           }) => (
-            <ul style={{ listStyleType: "none", padding: 0 }} {...provided.droppableProps} ref={provided.innerRef}>
+            <ul
+              style={{ listStyleType: "none", padding: 0 }}
+              {...provided.droppableProps}
+              ref={provided.innerRef}>
               {sorted.map((option, index) => (
                 <Draggable key={option} draggableId={option} index={index}>
                   {(provided: {
@@ -65,8 +70,7 @@ const Rank = () => {
                       style={{ listStyle: "none" }}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      ref={provided.innerRef}
-                    >
+                      ref={provided.innerRef}>
                       <Stack
                         my={2}
                         onMouseEnter={() => setSelectedOption(option)}
@@ -78,14 +82,20 @@ const Rank = () => {
                           borderRadius: 2.5,
                           border: "1px solid",
                           p: 1,
-                          borderColor: selectedOption === option ? "#fd5400" : theme.palette.grey[300],
-                          background: selectedOption === option ? "#FFEAD5" : "#fcfcfd",
-                        }}
-                      >
+                          borderColor:
+                            selectedOption === option
+                              ? "#fd5400"
+                              : theme.palette.grey[300],
+                          background:
+                            selectedOption === option ? "#FFEAD5" : "#fcfcfd",
+                        }}>
                         <Typography
-                          color={selectedOption === option ? "#FB6514" : theme.palette.grey[700]}
-                          variant={isSmallScreen ? "s16w6c700" : "s20w6c800"}
-                        >
+                          color={
+                            selectedOption === option
+                              ? "#FB6514"
+                              : theme.palette.grey[700]
+                          }
+                          variant={isSmallScreen ? "s16w6c700" : "s20w6c800"}>
                           {option}
                         </Typography>
                       </Stack>

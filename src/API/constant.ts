@@ -1,6 +1,6 @@
 type ENV = "dev" | "prod" | "local";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function config(env?: ENV): string {
+export function config(_env?: ENV): string {
   const urls = [
     {
       env: "dev",
@@ -16,9 +16,9 @@ export function config(env?: ENV): string {
     },
     {
       env: "ngrok",
-      url: "https://de8f-14-141-145-82.ngrok-free.app/",
+      url: "https://1e09-14-141-145-82.ngrok-free.app/",
     },
   ];
-  const url = urls.find((url) => url.env === "ngrok")?.url || "";
+  const url = urls.find((url) => url.env === "local")?.url || "";
   return url;
 }

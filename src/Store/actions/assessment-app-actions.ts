@@ -1,7 +1,12 @@
+import { GetAssessmentData } from "../../Types/app-types";
 import { QuestionIndex } from "../../Types/assessment-app-types";
 import { AssessmentDetails } from "../../Types/child-types";
 import { ActionType } from "../action-types";
 
+interface VerifyCandidate {
+  type: ActionType.VERIFY_CANDIDATE;
+  payload: GetAssessmentData;
+}
 interface StartAssessment {
   type: ActionType.START_ASSESSMENT;
   payload: {
@@ -12,6 +17,10 @@ interface StartAssessment {
 
 interface EndAssessment {
   type: ActionType.END_ASSESSMENT;
+  payload: null;
+}
+interface ClearPrevAssessment {
+  type: ActionType.CLEAR_PREV_ASSESSMENT;
   payload: null;
 }
 
@@ -95,4 +104,6 @@ export type AssessmentAppActions =
   | LoadQuestionByIndex
   | UpdateTimeElapsed
   | OpenAssessmentDrawer
-  | CloseAssessmentDrawer;
+  | CloseAssessmentDrawer
+  | VerifyCandidate
+  | ClearPrevAssessment;

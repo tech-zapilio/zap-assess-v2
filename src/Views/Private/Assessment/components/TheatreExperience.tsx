@@ -1,12 +1,5 @@
 import { Circle } from "@mui/icons-material";
-import {
-  Grid,
-  Typography,
-  Stack,
-  Button,
-  Tooltip,
-  Divider,
-} from "@mui/material";
+import { Grid, Typography, Stack, Tooltip, Divider } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { QuestionIndex } from "../../../../Types/assessment-app-types";
 import { ActionType } from "../../../../Store/action-types";
@@ -113,30 +106,16 @@ const TheatreExperience = () => {
     }
   }
   return (
-    <Stack
-      divider={<Divider />}
-      spacing={2}
-    >
+    <Stack divider={<Divider />} spacing={2}>
       <Stack alignItems="center">
-        <Typography
-          variant="s14w6c700"
-          color="#B54708"
-        >
+        <Typography variant="s14w6c700" color="#B54708">
           Questions
         </Typography>
       </Stack>
 
-      <Grid
-        container
-        direction="row"
-        spacing={1}
-      >
+      <Grid container direction="row" spacing={1}>
         {questions.map((q) => (
-          <Grid
-            item
-            xs={2.4}
-            key={q.index}
-          >
+          <Grid item xs={2.4} key={q.index}>
             <Stack
               onClick={() => loadQuestion(q)}
               sx={{
@@ -147,12 +126,10 @@ const TheatreExperience = () => {
                 cursor: "pointer",
               }}
               alignItems="center"
-              justifyContent="center"
-            >
+              justifyContent="center">
               <Typography
                 variant="s14w5c400"
-                color={get_question_color(q)?.color}
-              >
+                color={get_question_color(q)?.color}>
                 {q.index}
               </Typography>
               {q.isSkipped && <Circle sx={{ fontSize: 3, color: "#fd5400" }} />}
@@ -166,8 +143,7 @@ const TheatreExperience = () => {
           direction="row"
           alignItems="center"
           justifyContent="center"
-          spacing={1}
-        >
+          spacing={1}>
           <Tooltip title="You can submit the assessment once all the question are visited.">
             <span>
               <LoadingButton
@@ -176,8 +152,7 @@ const TheatreExperience = () => {
                 onClick={handle_submit}
                 disabled={!show_submit_button()}
                 size="small"
-                variant="contained"
-              >
+                variant="contained">
                 Submit Assessment
               </LoadingButton>
             </span>

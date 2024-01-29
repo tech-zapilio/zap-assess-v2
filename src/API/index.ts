@@ -1,6 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { AnswerResponse } from "../Types/assessment-app-types";
 import { config } from "./constant";
+import { GetAssessmentData } from "../Types/app-types";
 const baseURL = config();
 const API = axios.create({
   baseURL: `${baseURL}api`,
@@ -12,12 +13,22 @@ type EventParams = {
   userInfo?: string;
 };
 
+function getAuthToken() {
+  const serial = sessionStorage.getItem("applicant") || "";
+  let applicant: GetAssessmentData = {} as GetAssessmentData;
+  if (serial) {
+    applicant = JSON.parse(serial);
+    return applicant.authToken;
+  }
+  return "";
+}
+
 API.interceptors.request.use((req) => {
-  // if (sessionStorage.getItem("applicant")) {
-  //   req.headers.Authorization = `Bearer ${
-  //     JSON.parse(sessionStorage.getItem("applicant")).authToken
-  //   }`;
-  // }
+  const token = getAuthToken();
+  if (token) {
+    req.headers.Authorization = `Bearer ${token}`;
+  }
+
   req.headers["ngrok-skip-browser-warning"] = true;
   return req;
 });
@@ -35,10 +46,13 @@ export const get_assessment_for_applicant = ({
 export const get_assessment_for_event = (form: EventParams) =>
   API.get(`/assess/getAssessmentForEvent`, { params: form });
 
+//ASSESSMENT DETAILS
+export const get_assessment_lib = (id: string) => {
+  API.get(`/package/${id}`);
+};
 //ASSESSMENT APP
 export const start_assessment = (id: string) =>
   API.post(`/assessment/publish/${id}`);
-export const get_first_question = (userAssessmentId: string) =>
-  API.post("/assessment/next-question", { userAssessmentId });
+export const get_first_question = () => API.get("/assess/getNextQuestion");
 export const submit_answer = (form: AnswerResponse) =>
-  API.post("/assessment/submit-answer", form);
+  API.post("/assess/postResponse", form);
