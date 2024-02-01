@@ -19,6 +19,7 @@ export const AppRoutes = () => (
         <Route path="/" element={<NotFoundPage />} />
         <Route path="applicant/:applicant/:code" element={<LandingPage />} />
         <Route path="event/:event/:code" element={<LandingPage />} />
+        <Route path="event/:event/:code/:source" element={<LandingPage />} />
         {/* src */}
       </Route>
       <Route element={<AssessmentRoutes />}>

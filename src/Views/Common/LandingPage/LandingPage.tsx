@@ -10,9 +10,14 @@ import { ActionType } from "../../../Store/action-types";
 import { EventDetails } from "../../../Types/app-types";
 
 const LandingPage = () => {
-  const [form, setForm] = useState<{ accessCode: string; email: string }>({
+  const [form, setForm] = useState<{
+    accessCode: string;
+    email: string;
+    name: string;
+  }>({
     accessCode: "0",
     email: "",
+    name: "",
   });
   const params = useParams();
   const navigate = useNavigate();
@@ -20,6 +25,7 @@ const LandingPage = () => {
   const applicant = params.applicant || "";
   const code = params.code || "";
   const event = params.event || "";
+  const source = params.source || "";
 
   //https://dev.assess2.zapilio.com/applicantId=659fca4e1bfefcbd2444e00e/accessCode=170042.
   //jodId:659e6a6c04b1ff2667468687 ,code: 126578,
@@ -56,6 +62,8 @@ const LandingPage = () => {
         eventId: event,
         eventCode: form.accessCode,
         userInfo: form.email,
+        source: source,
+        name: form.name,
       });
       if (data) {
         dispatch({ type: ActionType.VERIFY_CANDIDATE, payload: data });
@@ -119,7 +127,8 @@ const LandingPage = () => {
         container
         height="100vh"
         alignItems="center"
-        justifyContent="center">
+        justifyContent="center"
+      >
         <Grid item xs={0} md={6}>
           <Stack alignItems="center">
             <Stack width="50%">
@@ -148,14 +157,27 @@ const LandingPage = () => {
               <Stack spacing={2} p={2}>
                 <TextField
                   disabled={loading}
+                  variant="standard"
+                  label="Name"
+                  placeholder="Enter your full name"
+                  onChange={handleChange}
+                  value={form.name}
+                  name="name"
+                />
+                <TextField
+                  variant="standard"
+                  disabled={loading}
+                  placeholder="Enter your email"
                   label="Email"
                   onChange={handleChange}
                   value={form.email}
                   name="email"
                 />
                 <TextField
+                  variant="standard"
                   disabled={loading}
                   label="Access Code"
+                  placeholder="Enter the access code provided"
                   onChange={handleChange}
                   value={form.accessCode}
                   name="accessCode"
@@ -164,7 +186,8 @@ const LandingPage = () => {
                 <LoadingButton
                   onClick={handleSubmit}
                   loading={loading}
-                  variant="contained">
+                  variant="contained"
+                >
                   Proceed
                 </LoadingButton>
               </Stack>

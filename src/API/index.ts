@@ -10,7 +10,9 @@ const API = axios.create({
 type EventParams = {
   eventId: string;
   eventCode?: string;
+  source?: string;
   userInfo?: string;
+  name?: string;
 };
 
 function getAuthToken() {
