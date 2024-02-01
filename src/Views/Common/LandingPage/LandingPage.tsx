@@ -1,4 +1,12 @@
-import { Box, Grid, Paper, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -122,79 +130,91 @@ const LandingPage = () => {
   }
 
   return (
-    <Box>
-      <Grid
-        container
-        height="100vh"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Grid item xs={0} md={6}>
-          <Stack alignItems="center">
-            <Stack width="50%">
-              <img
-                style={{ maxHeight: "100%", maxWidth: "100%" }}
-                src={sideImage}
-                alt="image"
-              />
-            </Stack>
-          </Stack>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Stack mx={4} spacing={2}>
-            <Paper variant="outlined">
-              {eventDetails.assessment && (
-                <Stack alignItems="center" py={2}>
-                  <Stack height={80}>
-                    <img
-                      style={{ maxHeight: "100%", maxWidth: "100%" }}
-                      src={eventDetails.customer.logoURL}
-                    />
-                  </Stack>
-                  <Typography>{eventDetails.shortDesc}</Typography>
-                </Stack>
-              )}
-              <Stack spacing={2} p={2}>
-                <TextField
-                  disabled={loading}
-                  variant="standard"
-                  label="Name"
-                  placeholder="Enter your full name"
-                  onChange={handleChange}
-                  value={form.name}
-                  name="name"
+    <Box
+      sx={{
+        backgroundColor: "#ff0000",
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cdefs%3E%3CradialGradient id='a' cx='500' cy='500' r='66.9%25' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ff0000'/%3E%3Cstop offset='1' stop-color='%23993C3C'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='500' cy='500' r='43.8%25' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0' stop-opacity='1'/%3E%3Cstop offset='1' stop-color='%23FF0' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1000' height='1000'/%3E%3Cg fill='none' stroke='%23FFEA8C' stroke-width='2.6' stroke-miterlimit='10' stroke-opacity='0.38'%3E%3Ccircle cx='500' cy='500' r='725'/%3E%3Ccircle cx='500' cy='500' r='700'/%3E%3Ccircle cx='500' cy='500' r='675'/%3E%3Ccircle cx='500' cy='500' r='650'/%3E%3Ccircle cx='500' cy='500' r='625'/%3E%3Ccircle cx='500' cy='500' r='600'/%3E%3Ccircle cx='500' cy='500' r='575'/%3E%3Ccircle cx='500' cy='500' r='550'/%3E%3Ccircle cx='500' cy='500' r='525'/%3E%3Ccircle cx='500' cy='500' r='500'/%3E%3Ccircle cx='500' cy='500' r='475'/%3E%3Ccircle cx='500' cy='500' r='450'/%3E%3Ccircle cx='500' cy='500' r='425'/%3E%3Ccircle cx='500' cy='500' r='400'/%3E%3Ccircle cx='500' cy='500' r='375'/%3E%3Ccircle cx='500' cy='500' r='350'/%3E%3Ccircle cx='500' cy='500' r='325'/%3E%3Ccircle cx='500' cy='500' r='300'/%3E%3Ccircle cx='500' cy='500' r='275'/%3E%3Ccircle cx='500' cy='500' r='250'/%3E%3Ccircle cx='500' cy='500' r='225'/%3E%3Ccircle cx='500' cy='500' r='200'/%3E%3Ccircle cx='500' cy='500' r='175'/%3E%3Ccircle cx='500' cy='500' r='150'/%3E%3Ccircle cx='500' cy='500' r='125'/%3E%3Ccircle cx='500' cy='500' r='100'/%3E%3Ccircle cx='500' cy='500' r='75'/%3E%3Ccircle cx='500' cy='500' r='50'/%3E%3Ccircle cx='500' cy='500' r='25'/%3E%3C/g%3E%3Crect fill-opacity='0.38' fill='url(%23b)' width='1000' height='1000'/%3E %3C/svg%3E")`,
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+      }}
+    >
+      <Container maxWidth="md">
+        <Grid
+          container
+          height="100vh"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={0} md={6}>
+            <Stack alignItems="center">
+              <Stack width="90%">
+                <img
+                  style={{ maxHeight: "100%", maxWidth: "100%" }}
+                  src={sideImage}
+                  alt="image"
                 />
-                <TextField
-                  variant="standard"
-                  disabled={loading}
-                  placeholder="Enter your email"
-                  label="Email"
-                  onChange={handleChange}
-                  value={form.email}
-                  name="email"
-                />
-                <TextField
-                  variant="standard"
-                  disabled={loading}
-                  label="Access Code"
-                  placeholder="Enter the access code provided"
-                  onChange={handleChange}
-                  value={form.accessCode}
-                  name="accessCode"
-                  type="number"
-                />
-                <LoadingButton
-                  onClick={handleSubmit}
-                  loading={loading}
-                  variant="contained"
-                >
-                  Proceed
-                </LoadingButton>
               </Stack>
-            </Paper>
-          </Stack>
+            </Stack>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Stack mx={4} spacing={2} p={2}>
+              <Paper variant="outlined" sx={{ borderRadius: "12px" }}>
+                {eventDetails.assessment && (
+                  <Stack alignItems="center" py={2} textAlign="center">
+                    <Stack height={60}>
+                      <img
+                        style={{ maxHeight: "100%", maxWidth: "100%" }}
+                        src={eventDetails.customer.logoURL}
+                      />
+                    </Stack>
+                    <Typography variant="s16w6c500">
+                      {" "}
+                      {eventDetails.shortDesc}
+                    </Typography>
+                  </Stack>
+                )}
+                <Stack spacing={2} p={2}>
+                  <TextField
+                    disabled={loading}
+                    variant="standard"
+                    label="Name"
+                    placeholder="Enter your full name"
+                    onChange={handleChange}
+                    value={form.name}
+                    name="name"
+                  />
+                  <TextField
+                    variant="standard"
+                    disabled={loading}
+                    placeholder="Enter your email"
+                    label="Email"
+                    onChange={handleChange}
+                    value={form.email}
+                    name="email"
+                  />
+                  <TextField
+                    variant="standard"
+                    disabled={loading}
+                    label="Access Code"
+                    placeholder="Enter the access code provided"
+                    onChange={handleChange}
+                    value={form.accessCode}
+                    name="accessCode"
+                    type="number"
+                  />
+                  <LoadingButton
+                    onClick={handleSubmit}
+                    loading={loading}
+                    variant="contained"
+                  >
+                    Proceed
+                  </LoadingButton>
+                </Stack>
+              </Paper>
+            </Stack>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </Box>
   );
 };
