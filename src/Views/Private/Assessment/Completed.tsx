@@ -2,6 +2,8 @@ import { Box, Button, Stack, Typography, useMediaQuery } from "@mui/material";
 import congratsAnimation from "./animations/congrats.json";
 import { useLottie } from "lottie-react";
 import { useNavigate } from "react-router-dom";
+import screenfull from "screenfull";
+import { useAppSelector } from "../../../App/hooks";
 
 const Completed = () => {
   const options = {
@@ -13,6 +15,12 @@ const Completed = () => {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width:600px)");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+  const { verifyCandidateResponse } = useAppSelector(
+    (state) => state.assessment_app
+  );
+
+  if (verifyCandidateResponse.applicant.job.isFullScreen) screenfull.exit();
 
   return (
     <Box height="100vh" maxWidth="100vw" sx={{ backgroundColor: "#3C5988" }}>

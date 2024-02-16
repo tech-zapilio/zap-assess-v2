@@ -1,7 +1,14 @@
 import { Box, Container, Link, Stack, Typography } from "@mui/material";
 import NotFound from "../../../Assets/SVGs/notFound.svg";
-
+import screenfull from "screenfull";
+import { useAppSelector } from "../../../App/hooks";
 const NotFoundPage = () => {
+  const { verifyCandidateResponse } = useAppSelector(
+    (state) => state.assessment_app
+  );
+
+  if (verifyCandidateResponse.applicant.job.isFullScreen) screenfull.exit();
+
   return (
     <Box>
       <Container>

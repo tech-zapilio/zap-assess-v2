@@ -240,7 +240,10 @@ const assessment_app_reducers = (
         verifyCandidateResponse: action.payload,
       };
     case ActionType.CLEAR_PREV_ASSESSMENT:
-      return initAssessmentState;
+      return {
+        ...initAssessmentState,
+        verifyCandidateResponse: state.verifyCandidateResponse,
+      };
     case ActionType.START_ASSESSMENT:
       return {
         ...state,

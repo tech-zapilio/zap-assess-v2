@@ -14,6 +14,7 @@ import patternLeft from "../../../Assets/SVGs/pattern2-lite.svg";
 import ReviewModal from "./components/ReviewModal";
 import Completed from "./Completed";
 import TheatreDrawer from "./components/TheatreDrawer";
+import screenfull from "screenfull";
 
 const question_container_styles = {
   background: "#eaecf0",
@@ -27,7 +28,17 @@ const question_container_styles = {
 const Assessment = () => {
   const dispatch = useDispatch();
   const isSmallScreen = useMediaQuery("(max-width:600px)");
-  const { questions, endsOn } = useAppSelector((state) => state.assessment_app);
+
+  const { questions, endsOn, verifyCandidateResponse } = useAppSelector(
+    (state) => state.assessment_app
+  );
+  const isFullScreen = verifyCandidateResponse.applicant.job.isFullScreen;
+
+  useEffect(() => {
+    if (isFullScreen) {
+      screenfull?.request();
+    }
+  }, []);
 
   useEffect(() => {
     dispatch({ type: ActionType.END_QUESTION_LOADING });

@@ -18,9 +18,13 @@ const Navigation = () => {
     startedOn,
     userAssessmentId,
     questions,
-    isSkip,
     questionLoading,
+    isSkip,
+    isReview,
+    verifyCandidateResponse,
   } = useAppSelector((state) => state.assessment_app);
+
+  // if (verifyCandidateResponse.applicant.job.isFullScreen) screenfull.exit();
 
   const answerResponse: AnswerResponse = {
     userAssessmentId: userAssessmentId,
@@ -34,6 +38,9 @@ const Navigation = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
+  const disableSkip = verifyCandidateResponse.applicant.job.bAllowSkip===false;
+  
+  // const isSkip=false
 
   //
   //
@@ -308,26 +315,30 @@ const Navigation = () => {
       mt={4}
       direction="row"
       alignItems="center"
-      justifyContent="space-between">
-      <LoadingButton
-        disabled={
-          (currentQuestion.isSkipped && !isSkip) ||
-          questionLoading ||
-          is_last_question()
-        }
-        loading={isSkipping}
-        onClick={handleSkip}
-        size="large"
-        variant="outlined">
-        {currentQuestion.isSkipped && isSkip ? "Skip" : "Revisit Later"}
-      </LoadingButton>
-
+      justifyContent="space-between"
+    >
+      {!isSkip && !isReview && !disableSkip && (
+        <LoadingButton
+          disabled={
+            (currentQuestion.isSkipped && !isSkip) ||
+            questionLoading ||
+            is_last_question()
+          }
+          loading={isSkipping}
+          onClick={handleSkip}
+          size="large"
+          variant="outlined"
+        >
+          {currentQuestion.isSkipped && isSkip ? "Skip" : "Revisit Later"}
+        </LoadingButton>
+      )}
       <LoadingButton
         loading={isSubmitting}
         disabled={!answer}
         onClick={handleNext}
         size="large"
-        variant="contained">
+        variant="contained"
+      >
         Submit
       </LoadingButton>
     </Stack>

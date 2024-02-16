@@ -32,10 +32,17 @@ const modalStyles = {
 const ReviewModal = () => {
   const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { isReview, questions, userAssessmentId, startedOn, currentQuestion } =
-    useAppSelector((state) => state.assessment_app);
+  const {
+    isReview,
+    questions,
+    userAssessmentId,
+    startedOn,
+    currentQuestion,
+    verifyCandidateResponse,
+  } = useAppSelector((state) => state.assessment_app);
 
   const skipped_questions = questions.filter((q) => q.isSkipped);
+  const diSableRetrySkip = verifyCandidateResponse.applicant.job.retrySKIP;
 
   async function handle_submit() {
     try {
@@ -91,10 +98,7 @@ const ReviewModal = () => {
   }
 
   return (
-    <Modal
-      open={isReview}
-      slots={{ backdrop: Backdrop }}
-    >
+    <Modal open={isReview} slots={{ backdrop: Backdrop }}>
       <Fade in={isReview}>
         <Box sx={modalStyles}>
           <Stack spacing={3}>
@@ -105,26 +109,15 @@ const ReviewModal = () => {
               sx={{}}
             >
               <Stack>
-                <Typography
-                  color="#"
-                  variant="s24w6c900"
-                  fontWeight={600}
-                >
+                <Typography color="#" variant="s24w6c900" fontWeight={600}>
                   HEY, WAIT!
                 </Typography>
-                <Typography
-                  color="#"
-                  variant="s24w6c900"
-                  fontWeight={500}
-                >
+                <Typography color="#" variant="s24w6c900" fontWeight={500}>
                   We are not done yet!
                 </Typography>
               </Stack>
             </Stack>
-            <Typography
-              mt={2}
-              variant="s16w4c600"
-            >
+            <Typography mt={2} variant="s16w4c600">
               You’ve left a few questions unanswered. Take a stab at them!
             </Typography>
             <Stack
@@ -133,13 +126,15 @@ const ReviewModal = () => {
               justifyContent="space-between"
               spacing={2}
             >
-              <Button
-                disabled={isSubmitting}
-                variant="contained"
-                onClick={handle_start_skipped}
-              >
-                Answer Skipped Questions
-              </Button>{" "}
+              {diSableRetrySkip && (
+                <Button
+                  disabled={isSubmitting}
+                  variant="contained"
+                  onClick={handle_start_skipped}
+                >
+                  Answer Skipped Questions
+                </Button>
+              )}
               <LoadingButton
                 loading={isSubmitting}
                 variant="outlined"
