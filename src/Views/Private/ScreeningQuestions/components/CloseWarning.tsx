@@ -42,7 +42,7 @@ const CloseWarning = (props: ModalProps) => {
   }
   function handleExit() {
     dispatch({ type: ActionType.END_ASSESSMENT });
-    navigate("/assessment-completed");
+    navigate("/progress");
   }
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 

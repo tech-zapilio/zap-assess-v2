@@ -10,8 +10,10 @@ import Assessment from "../Views/Private/Assessment/Assessment";
 import Completed from "../Views/Private/Assessment/Completed";
 import AssessmentDetails from "../Views/Private/AssessmentDetails/AssessmentDetails";
 import LandingPage from "../Views/Common/LandingPage/LandingPage";
+import ScreeningQuestions from "../Views/Private/ScreeningQuestions/ScreeningQuestions";
 //localhost:5103/applicant/applicantid/applicantcode
 ///localhost:5173/event/jobId/jobCode
+import GraphReport from "../Views/Private/Assessment/CompletionPage/GraphReport";
 export const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
@@ -25,7 +27,14 @@ export const AppRoutes = () => (
       <Route element={<AssessmentRoutes />}>
         <Route path="/assessment-app" element={<Assessment />} />
         <Route path="/assessment-details" element={<AssessmentDetails />} />
+        <Route
+          path="/assessment-screening-questions"
+          element={<ScreeningQuestions />}
+        />
+
         <Route path="/assessment-completed" element={<Completed />} />
+        <Route path="/report" element={<GraphReport />} />
+
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

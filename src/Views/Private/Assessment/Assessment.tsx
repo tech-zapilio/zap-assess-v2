@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../App/hooks";
 import { get_first_question } from "../../../API";
 import { useDispatch } from "react-redux";
@@ -15,7 +15,8 @@ import ReviewModal from "./components/ReviewModal";
 import Completed from "./Completed";
 import TheatreDrawer from "./components/TheatreDrawer";
 import screenfull from "screenfull";
-
+import useWindowSize from "../../../hooks/fullScreen";
+import WarningModal from "./warningModal";
 const question_container_styles = {
   background: "#eaecf0",
   backgroundImage: `url(${patternLeft}),  url(${patternRight})`,
@@ -29,16 +30,16 @@ const Assessment = () => {
   const dispatch = useDispatch();
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
-  const { questions, endsOn, verifyCandidateResponse } = useAppSelector(
-    (state) => state.assessment_app
-  );
-  const isFullScreen = verifyCandidateResponse.applicant.job.isFullScreen;
+  const { questions, endsOn, verifyCandidateResponse, isCompleted } =
+    useAppSelector((state) => state.assessment_app);
+  const size = useWindowSize();
 
+  const fullScreen = verifyCandidateResponse.applicant.job.isFullScreen;
   useEffect(() => {
-    if (isFullScreen) {
-      screenfull?.request();
+    if (fullScreen) {
+      screenfull.request();
     }
-  }, []);
+  }, [size]);
 
   useEffect(() => {
     dispatch({ type: ActionType.END_QUESTION_LOADING });
@@ -48,6 +49,16 @@ const Assessment = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const h = screen.height;
+  const w = screen.width;
+  useEffect(() => {
+    if (size.width === w && size.height === h) {
+      setIsFullScreen(true);
+    } else {
+      setIsFullScreen(false);
+    }
+  }, [size]);
 
   async function getFirstQuestion() {
     try {
@@ -70,6 +81,16 @@ const Assessment = () => {
 
   return (
     <Stack>
+      {!isFullScreen && !isCompleted && fullScreen && (
+        <WarningModal
+          // Answer={Answer}
+          // timeSpent={timeSpent}
+          // Question={Question}
+          // setAnswer={setAnswer}
+          // setLoading={setLoading}
+        />
+      )}
+
       <TheatreDrawer />
       <Stack width="100vw">
         <Header />

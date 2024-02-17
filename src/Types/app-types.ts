@@ -20,6 +20,7 @@ export type Job = {
     _id: string;
     type: string;
   };
+  screeningQ: ScreeningQ[]
 };
 
 export type Assessment = {
@@ -93,3 +94,15 @@ export type EventDetails = {
   shortDesc: string;
   _id: string;
 };
+
+export interface ScreeningQ {
+  _id: string
+  question: string
+  type: string
+  options: string[]
+  isDefault: boolean
+  customer: string
+  createdAt: string
+  updatedAt: string
+  __v: number
+}

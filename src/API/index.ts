@@ -4,7 +4,7 @@ import { config } from "./constant";
 import { GetAssessmentData } from "../Types/app-types";
 const baseURL = config("local");
 const API = axios.create({
-  baseURL: `${baseURL}v3`,
+  baseURL: ` http://localhost:8080/v3`,
 });
 
 type EventParams = {
@@ -58,3 +58,6 @@ export const start_assessment = (id: string) =>
 export const get_first_question = () => API.get("/assess/getNextQuestion");
 export const submit_answer = (form: AnswerResponse) =>
   API.post("/assess/postResponse", form);
+export const submit_SQ = (form: { question: string; answer: string }[]) =>
+  API.post("/assess/answerScreenQ", { answers: form });
+export const getReport = () => API.get("/assess/viewReport");

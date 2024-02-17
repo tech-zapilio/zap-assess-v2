@@ -315,7 +315,7 @@ const Navigation = () => {
       mt={4}
       direction="row"
       alignItems="center"
-      justifyContent="space-between"
+      justifyContent="space-around"
     >
       {!isSkip && !isReview && !disableSkip && (
         <LoadingButton

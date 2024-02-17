@@ -37,6 +37,20 @@ interface UpdateAnswer {
   type: ActionType.UPDATE_ANSWER;
   payload: string;
 }
+interface UpdateAnswerSQ {
+  type: ActionType.UPDATE_ANSWER_SQ;
+  payload: {
+    currentQNumber: number;
+    answers: {
+      question: string;
+      answer: string;
+    }[];
+  };
+}
+interface SubmitAnswerSQ {
+  type: ActionType.SUBMIT_ANSWER_SQ;
+  payload: null;
+}
 
 interface SubmitAnswer {
   type: ActionType.SUBMIT_ANSWER;
@@ -87,6 +101,18 @@ interface CloseAssessmentDrawer {
   type: ActionType.CLOSE_ASSESSMENT_DRAWER;
   payload: string;
 }
+interface updateCurrentSQ {
+  type: ActionType.UPDATE_CURRENT_SQ;
+  payload: {
+    question: string;
+    answer: string;
+  };
+}
+interface getReport {
+  type: ActionType.GET_REPORT;
+  payload: any;
+}
+
 export type AssessmentAppActions =
   | StartAssessment
   | EndAssessment
@@ -106,4 +132,8 @@ export type AssessmentAppActions =
   | OpenAssessmentDrawer
   | CloseAssessmentDrawer
   | VerifyCandidate
-  | ClearPrevAssessment;
+  | ClearPrevAssessment
+  | UpdateAnswerSQ
+  | SubmitAnswerSQ
+  | updateCurrentSQ
+  | getReport;

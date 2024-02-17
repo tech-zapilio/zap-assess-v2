@@ -53,7 +53,11 @@ const LandingPage = () => {
       if (data) {
         dispatch({ type: ActionType.VERIFY_CANDIDATE, payload: data });
         sessionStorage.setItem("applicant", JSON.stringify(data));
-        navigate("/assessment-details");
+        console.log("data", data.data, data.applicant.job.screeningQ);
+        if (data.applicant.job.screeningQ.length == 0)
+          navigate("/assessment-details");
+        else navigate("/assessment-screening-questions");
+
         setLoading(false);
       }
 
@@ -74,9 +78,13 @@ const LandingPage = () => {
         name: form.name,
       });
       if (data) {
+        console.log("data", data.data, data.applicant.job.screeningQ);
+
         dispatch({ type: ActionType.VERIFY_CANDIDATE, payload: data });
         sessionStorage.setItem("applicant", JSON.stringify(data));
-        navigate("/assessment-details");
+        if (data.applicant.job.screeningQ.length == 0)
+          navigate("/assessment-details");
+        else navigate("/assessment-screening-questions");
       }
 
       setLoading(false);

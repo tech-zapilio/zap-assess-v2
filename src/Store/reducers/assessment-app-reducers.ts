@@ -7,7 +7,10 @@ import {
 import { AssessmentDetails } from "../../Types/child-types";
 import { ActionType } from "../action-types";
 import { Action } from "../actions";
-
+type answer = {
+  question: string;
+  answer: string;
+};
 export type AssessmentAppType = {
   //ASSESSMENT
   verifyCandidateResponse: GetAssessmentData;
@@ -24,6 +27,18 @@ export type AssessmentAppType = {
   isSkip: boolean;
   isReview: boolean;
   drawerOpen: boolean;
+  screeningQuestions: {
+    currentQNumber: number;
+    answers: {
+      question: string;
+      answer: string;
+    }[];
+  };
+  currentScreeningAnswer: {
+    question: string;
+    answer: string;
+  };
+  report: any;
 };
 
 const initAssessmentState: AssessmentAppType = {
@@ -113,6 +128,7 @@ const initAssessmentState: AssessmentAppType = {
           type: "",
           description: "",
         },
+        screeningQ: [],
       },
       assessment: {
         _id: "",
@@ -147,6 +163,15 @@ const initAssessmentState: AssessmentAppType = {
     authToken: "",
     mapping: [],
   },
+  screeningQuestions: {
+    currentQNumber: 0,
+    answers: [],
+  },
+  currentScreeningAnswer: {
+    question: "",
+    answer: "",
+  },
+  report: null,
 };
 
 function initQuestions(no_of_questions: number) {
@@ -270,6 +295,18 @@ const assessment_app_reducers = (
         currentQuestion: action.payload,
       };
 
+    case ActionType.UPDATE_CURRENT_SQ:
+      return {
+        ...state,
+        currentScreeningAnswer: action.payload,
+      };
+
+    case ActionType.GET_REPORT:
+      return {
+        ...state,
+        report: action.payload,
+      };
+
     case ActionType.LOAD_QUESTION:
       return { ...state, currentQuestion: action.payload };
 
@@ -277,6 +314,20 @@ const assessment_app_reducers = (
       return {
         ...state,
         currentQuestion: { ...state.currentQuestion, answer: action.payload },
+      };
+    case ActionType.UPDATE_ANSWER_SQ:
+      return {
+        ...state,
+        screeningQuestions: action.payload,
+        currentScreeningAnswer: {
+          question: "",
+          answer: "",
+        },
+
+        // {
+        //   currentQNumber: state.screeningQuestions.currentQNumber + 1,
+        //   answers: [...state.screeningQuestions.answers, action.payload],
+        // },
       };
 
     case ActionType.UPDATE_QUESTION_STATUS:

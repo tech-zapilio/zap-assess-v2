@@ -39,9 +39,20 @@ const Completed = () => {
           >
             You have successfully finished the assessment
           </Typography>
-          <Button onClick={() => navigate("/")} variant="outlined">
-            Go Home
-          </Button>
+          <Stack
+          gap={3}
+            alignItems="center"
+            justifyContent="space-between"
+            height="100vh"
+            direction={"row"}
+          >
+            <Button onClick={() => navigate("/report")} variant="outlined">
+              View Graphical Report
+            </Button>
+            <Button onClick={() => navigate("/")} variant="outlined">
+              Go Home
+            </Button>
+          </Stack>
         </Stack>
       </Stack>
     </Box>
