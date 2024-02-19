@@ -6,13 +6,20 @@ import { useDispatch } from "react-redux";
 import { submit_answer } from "../../../../API";
 import { time_elapsed } from "../utils";
 import { ActionType } from "../../../../Store/action-types";
-
+import { getReturnValues } from "../../../../hooks/useCountdown";
 const Timer = ({ isSmall = false }: { isSmall?: boolean }) => {
   const dispatch = useDispatch();
-  const { endsOn, currentQuestion, userAssessmentId, startedOn } =
-    useAppSelector((state) => state.assessment_app);
+  const {
+    endsOn,
+    currentQuestion,
+    userAssessmentId,
+    startedOn,
+    openScreeningQuestionsModal,
+  } = useAppSelector((state) => state.assessment_app);
 
-  const timer = useCountdown(endsOn);
+  let timer = useCountdown(endsOn);
+  if (openScreeningQuestionsModal) timer = getReturnValues(endsOn - startedOn);
+  // else timer = useCountdown(endsOn);
 
   const box_style = {
     background: "#fef0c7",
@@ -52,39 +59,23 @@ const Timer = ({ isSmall = false }: { isSmall?: boolean }) => {
   return (
     <Stack spacing={2}>
       {!isSmall && <Typography variant="s14w6c700">Time Remaining</Typography>}
-      <Stack
-        direction="row"
-        alignItems="center"
-        spacing={1}
-      >
+      <Stack direction="row" alignItems="center" spacing={1}>
         <Stack sx={box_style}>
-          <Typography
-            variant={variant}
-            color="#FDB022"
-          >
+          <Typography variant={variant} color="#FDB022">
             {timer.minutes}
           </Typography>
         </Stack>
-        <Typography
-          variant={variant}
-          color="#FDB022"
-        >
+        <Typography variant={variant} color="#FDB022">
           :
         </Typography>
         <Stack sx={box_style}>
-          <Typography
-            variant={variant}
-            color="#FDB022"
-          >
+          <Typography variant={variant} color="#FDB022">
             {timer.seconds}
           </Typography>{" "}
         </Stack>
       </Stack>
       {!isSmall && (
-        <Typography
-          variant="s14w6c700"
-          color="#B54708"
-        >
+        <Typography variant="s14w6c700" color="#B54708">
           {timer.isOver && "Time Over!"}
         </Typography>
       )}

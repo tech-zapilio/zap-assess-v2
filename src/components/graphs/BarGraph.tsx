@@ -58,10 +58,10 @@ export default function BarGraph({ data }) {
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
         width={600}
-        height={300}
+        height={400}
         data={data}
         margin={{
-          top: 5,
+          top: -50,
           // right: 30,
           // left: 20,
           bottom: 90,
@@ -70,9 +70,9 @@ export default function BarGraph({ data }) {
         <XAxis dataKey="skill" tickLine={false} tickCount={5} tick={<TiltedAxisTick />} interval={0} />
         {/* <YAxis axisLine={false} tickLine={false} tick={false} /> */}
         <Tooltip />
-        <Legend verticalAlign="top" />
+        <Legend verticalAlign="top"/>
         <Bar dataKey="You" fill="#FF5400" label={<Label />} />
-        {/* <Bar dataKey="Peer Average" label={<Label />} fill="#424242" /> */}
+        <Bar dataKey="maxScore" label={<Label />} fill="#424242" />
       </BarChart>
     </ResponsiveContainer>
   );

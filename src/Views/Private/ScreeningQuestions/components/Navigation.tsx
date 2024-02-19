@@ -10,6 +10,7 @@ import { ActionType } from "../../../../Store/action-types";
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
 import { useNavigate } from "react-router-dom";
+import { get_first_question } from "../../../../API";
 const Navigation = () => {
   const dispatch = useDispatch();
   //
@@ -54,6 +55,11 @@ const Navigation = () => {
         },
       });
 
+      dispatch({
+        type: ActionType.UPDATE_OPEN_SQ_MODAL_OPEN,
+        payload: false,
+      });
+
       try {
         setLoading(true);
         const { data } = await submit_SQ([
@@ -66,10 +72,31 @@ const Navigation = () => {
           // dispatch({ type: ActionType.VERIFY_CANDIDATE, payload: data });
           // sessionStorage.setItem("applicant", JSON.stringify(data));
           // if (data.applicant.job.screeningQ.length == 0)
-          navigate("/assessment-details");
+          // navigate("/assessment-details");
           // else navigate("/assessment-screening-questions");
 
           setLoading(false);
+          try {
+            // dispatch({
+            //   type: ActionType.CLEAR_PREV_ASSESSMENT,
+            // });
+
+            dispatch({
+              type: ActionType.START_ASSESSMENT,
+              payload: {
+                userAssessmentId: "",
+                assessmentLib: {
+                  questions:
+                    verifyCandidateResponse.applicant.assessment.totalQuestions,
+                  duration:
+                    verifyCandidateResponse.applicant.assessment.totalTime,
+                  name: verifyCandidateResponse.applicant.assessment.name,
+                },
+              },
+            });
+          } catch (error) {
+            console.log(error);
+          }
         }
         // const {data} = await
       } catch (error) {
@@ -97,19 +124,21 @@ const Navigation = () => {
   }
   return (
     <Stack
-      mt={4}
+      // mt={4}
       direction="row"
       alignItems="center"
-      justifyContent="space-around"
+      justifyContent="start"
     >
       <LoadingButton
         loading={loading}
-        disabled={currentScreeningAnswer.answer==""}
+        disabled={currentScreeningAnswer.answer == ""}
         onClick={handleNext}
         size="large"
         variant="contained"
       >
-        {(screeningQ.length === currentQNumber + 1)?"Submit":"Next"}
+        {screeningQ.length === currentQNumber + 1
+          ? "Resume Assessment"
+          : "Next"}
       </LoadingButton>
     </Stack>
   );

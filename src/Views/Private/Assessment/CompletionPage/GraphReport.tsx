@@ -109,7 +109,7 @@ const GraphReport = () => {
 
               <Grid>
                 <Typography variant="s18w4c600">
-                  And this is how you fared against your peers.
+                  And your score in each skill.
                 </Typography>
 
                 {/* <Typography variant="title2thin" color="Text.Subs">
@@ -173,8 +173,11 @@ const GraphReport = () => {
               {/* <Button onClick={() => navigate("/report")} variant="outlined">
               View Graphical Report
             </Button> */}
-              <Button onClick={() => navigate("/")} variant="outlined">
-                Go Home
+              <Button onClick={() => 
+              window.open("https://www.skill.zapilio.com/")
+                // navigate("/")
+                } variant="outlined">
+                Want to upskill more
               </Button>
             </Stack>
 

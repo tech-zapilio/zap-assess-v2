@@ -126,7 +126,7 @@ const ReviewModal = () => {
               justifyContent="space-between"
               spacing={2}
             >
-              {diSableRetrySkip && (
+              {verifyCandidateResponse.applicant.job.retrySKIP && (
                 <Button
                   disabled={isSubmitting}
                   variant="contained"

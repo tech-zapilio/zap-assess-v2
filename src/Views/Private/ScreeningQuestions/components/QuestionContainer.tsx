@@ -52,21 +52,21 @@ const QuestionDetails = () => {
         alignItems="baseline"
         spacing={1}
       >
-        {!isSmallScreen && (
+        {/* {!isSmallScreen && (
           <Typography variant="s28w6c800" color="primary">
             Q{currentQNumber + 1}.
           </Typography>
-        )}
+        )} */}
         <Stack width="100%">
           <Typography variant={isSmallScreen ? "s20w6c600" : "s28w6c800"}>
-            {isSmallScreen && (
+            {/* {isSmallScreen && (
               <Typography
                 variant={isSmallScreen ? "s20w6c600" : "s28w6c800"}
                 color="primary"
               >
                 Q{currentQNumber + 1}.&nbsp;
               </Typography>
-            )}
+            )} */}
 
             {currentQuestion.question}
           </Typography>
@@ -82,11 +82,9 @@ const QuestionDetails = () => {
 
 const QuestionContainer = () => {
   return (
-    <Grid>
-      <Grid sx={{ minHeight: 500 }}>
+      <Grid py={3} >
         <QuestionDetails />
       </Grid>
-    </Grid>
   );
 };
 

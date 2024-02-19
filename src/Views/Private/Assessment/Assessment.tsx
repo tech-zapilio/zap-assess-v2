@@ -17,6 +17,7 @@ import TheatreDrawer from "./components/TheatreDrawer";
 import screenfull from "screenfull";
 import useWindowSize from "../../../hooks/fullScreen";
 import WarningModal from "./warningModal";
+import ScreeningQuestions from "../ScreeningQuestions/ScreeningQuestions";
 const question_container_styles = {
   background: "#eaecf0",
   backgroundImage: `url(${patternLeft}),  url(${patternRight})`,
@@ -96,6 +97,7 @@ const Assessment = () => {
         <Header />
       </Stack>
       <ReviewModal />
+      <ScreeningQuestions/>
       <Grid px={{ xs: 2, md: 8 }} mt={4}>
         <Grid container columnSpacing={6}>
           {!isSmallScreen && (

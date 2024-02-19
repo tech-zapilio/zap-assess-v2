@@ -39,6 +39,7 @@ export type AssessmentAppType = {
     answer: string;
   };
   report: any;
+  openScreeningQuestionsModal: boolean;
 };
 
 const initAssessmentState: AssessmentAppType = {
@@ -172,6 +173,7 @@ const initAssessmentState: AssessmentAppType = {
     answer: "",
   },
   report: null,
+  openScreeningQuestionsModal: false,
 };
 
 function initQuestions(no_of_questions: number) {
@@ -267,7 +269,10 @@ const assessment_app_reducers = (
     case ActionType.CLEAR_PREV_ASSESSMENT:
       return {
         ...initAssessmentState,
+
         verifyCandidateResponse: state.verifyCandidateResponse,
+        openScreeningQuestionsModal:
+          state.verifyCandidateResponse.applicant.job.screeningQ.length > 0,
       };
     case ActionType.START_ASSESSMENT:
       return {
@@ -299,6 +304,11 @@ const assessment_app_reducers = (
       return {
         ...state,
         currentScreeningAnswer: action.payload,
+      };
+    case ActionType.UPDATE_OPEN_SQ_MODAL_OPEN:
+      return {
+        ...state,
+        openScreeningQuestionsModal: action.payload,
       };
 
     case ActionType.GET_REPORT:

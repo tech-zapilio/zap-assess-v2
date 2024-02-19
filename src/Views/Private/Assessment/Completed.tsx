@@ -40,15 +40,17 @@ const Completed = () => {
             You have successfully finished the assessment
           </Typography>
           <Stack
-          gap={3}
+            gap={3}
             alignItems="center"
             justifyContent="space-between"
             height="100vh"
             direction={"row"}
           >
-            <Button onClick={() => navigate("/report")} variant="outlined">
-              View Graphical Report
-            </Button>
+            {verifyCandidateResponse.applicant.job.bDisplayReport && (
+              <Button onClick={() => navigate("/report")} variant="outlined">
+                View Graphical Report
+              </Button>
+            )}
             <Button onClick={() => navigate("/")} variant="outlined">
               Go Home
             </Button>

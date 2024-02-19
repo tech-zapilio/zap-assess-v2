@@ -112,6 +112,11 @@ interface getReport {
   type: ActionType.GET_REPORT;
   payload: any;
 }
+interface updateOpenSQModal {
+  type: ActionType.UPDATE_OPEN_SQ_MODAL_OPEN;
+  payload: boolean;
+}
+
 
 export type AssessmentAppActions =
   | StartAssessment
@@ -136,4 +141,5 @@ export type AssessmentAppActions =
   | UpdateAnswerSQ
   | SubmitAnswerSQ
   | updateCurrentSQ
-  | getReport;
+  | getReport
+  | updateOpenSQModal

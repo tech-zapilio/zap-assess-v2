@@ -125,6 +125,8 @@ declare module "@mui/material/styles" {
     s12w8c500?: React.CSSProperties;
     s18w4c600?: React.CSSProperties;
     s28w6c800?: React.CSSProperties;
+
+    s14w4c400?: React.CSSProperties;
   }
 
   interface PaletteColor {
@@ -181,6 +183,7 @@ declare module "@mui/material/Typography" {
     s16w6c500: true;
     s16w4c600: true;
     s14w6c700: true;
+    s14w4c400:true;
     s14w5c700: true;
     s12w5c500: true;
     s20w6c700: true;
@@ -288,6 +291,11 @@ const theme = responsiveFontSizes(
         fontSize: 16,
         fontWeight: 600,
         color: token.grey[500],
+      },
+      s14w4c400: {
+        fontSize: 14,
+        fontWeight: 400,
+        color: token.grey[400],
       },
       s16w4c600: {
         fontSize: 16,

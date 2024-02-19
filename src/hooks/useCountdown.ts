@@ -29,7 +29,7 @@ function preventNegative(value: number): string {
   return value >= 0 ? padNumber(value) : "00";
 }
 
-const getReturnValues = (countDown: number) => {
+export const getReturnValues = (countDown: number) => {
   // calculate time left
   const days = preventNegative(Math.floor(countDown / (1000 * 60 * 60 * 24)));
   const hours = preventNegative(Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));

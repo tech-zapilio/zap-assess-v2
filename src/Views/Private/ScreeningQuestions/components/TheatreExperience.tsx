@@ -1,12 +1,19 @@
 import { Circle } from "@mui/icons-material";
-import { Grid, Typography, Stack, Tooltip, Divider } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Stack,
+  Tooltip,
+  Divider,
+  TextField,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
 import { QuestionIndex } from "../../../../Types/assessment-app-types";
 import { ActionType } from "../../../../Store/action-types";
 import { useAppSelector } from "../../../../App/hooks";
 import { useState } from "react";
 import { submit_answer } from "../../../../API";
-import { time_elapsed } from "../utils";
+import { time_elapsed } from "../../Assessment/utils";
 import { LoadingButton } from "@mui/lab";
 
 const TheatreExperience = () => {
@@ -106,61 +113,13 @@ const TheatreExperience = () => {
     }
   }
   return (
-    <Stack divider={<Divider />} spacing={2}>
-      <Stack alignItems="center">
-        <Typography variant="s14w6c700" color="#B54708">
-          Questions
-        </Typography>
-      </Stack>
-
-      <Grid container direction="row" spacing={1}>
-        {questions.map((q) => (
-          <Grid item xs={2.4} key={q.index}>
-            <Stack
-              onClick={() => loadQuestion(q)}
-              sx={{
-                background: get_question_color(q)?.background,
-                borderRadius: 2.5,
-                height: 28,
-                width: 28,
-                cursor: "pointer",
-              }}
-              alignItems="center"
-              justifyContent="center">
-              <Typography
-                variant="s14w5c400"
-                color={get_question_color(q)?.color}>
-                {q.index}
-              </Typography>
-              {q.isSkipped && <Circle sx={{ fontSize: 3, color: "#fd5400" }} />}
-              {isLatest(q) && <Circle sx={{ fontSize: 3, color: "#198754" }} />}
-            </Stack>
-          </Grid>
-        ))}
-        <Stack
-          width="100%"
-          mt={3}
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          spacing={1}>
-          <Tooltip title="You can submit the assessment once all the question are visited.">
-            <span>
-              <LoadingButton
-                fullWidth
-                loading={submitting}
-                onClick={handle_submit}
-                disabled={!show_submit_button()}
-                size="small"
-                variant="contained">
-                Submit Assessment
-              </LoadingButton>
-            </span>
-          </Tooltip>
-        </Stack>
-      </Grid>
+    <Stack>
+      <Typography variant="s12w4c500">
+        This timer has been paused for a quick challenge, answer the following
+        questions to continue the assessment.
+      </Typography>
     </Stack>
-  );
+  )
 };
 
 export default TheatreExperience;
