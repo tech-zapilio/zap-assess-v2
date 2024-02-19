@@ -284,6 +284,7 @@ const assessment_app_reducers = (
         startedOn: Date.now(),
       };
 
+      
     case ActionType.START_QUESTION_LOADING:
       return { ...state, questionLoading: true };
 
