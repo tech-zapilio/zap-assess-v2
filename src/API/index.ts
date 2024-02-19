@@ -2,7 +2,7 @@ import axios from "axios";
 import { AnswerResponse } from "../Types/assessment-app-types";
 import { config } from "./constant";
 import { GetAssessmentData } from "../Types/app-types";
-const baseURL = config("local");
+const baseURL = config();
 const API = axios.create({
   baseURL: `${baseURL}v3`,
 });
