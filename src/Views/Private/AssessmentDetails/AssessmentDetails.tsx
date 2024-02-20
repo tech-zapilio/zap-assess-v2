@@ -16,7 +16,7 @@ const AssessmentDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { applicant } = useAppSelector(
+  const { applicant,customer } = useAppSelector(
     (state) => state.assessment_app.verifyCandidateResponse
   );
 
@@ -48,19 +48,19 @@ const AssessmentDetails = () => {
                 sx={{ height: "100vh" }}
                 justifyContent="center"
                 spacing={4}>
-                <Stack direction="row" alignItems="center" spacing={1}>
+                <Stack direction="row" alignItems="center"  spacing={1}>
                   <Stack height={30}>
                     <img
                       src={applicant.customer.logoURL}
                       style={{ maxWidth: "100%", maxHeight: "100%" }}
                     />
                   </Stack>
-                  <Stack>
+                  {/* <Stack>
                     <Typography variant="s12w4c500"> Assessment By </Typography>
                     <Typography variant="s16w6c500">
-                      {applicant.customer.name}
+                      {customer.registedName}
                     </Typography>
-                  </Stack>
+                  </Stack> */}
                 </Stack>
                 <Stack>
                   <Typography variant="s36w8c500" color="text.900">

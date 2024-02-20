@@ -4,6 +4,7 @@ import { useLottie } from "lottie-react";
 import { useNavigate } from "react-router-dom";
 import screenfull from "screenfull";
 import { useAppSelector } from "../../../App/hooks";
+import CompleteIcon from "../../../Assets/SVGs/Group 15698.svg";
 
 const Completed = () => {
   const options = {
@@ -25,17 +26,19 @@ const Completed = () => {
   return (
     <Box height="100vh" maxWidth="100vw" sx={{ backgroundColor: "#3C5988" }}>
       <Stack alignItems="center" justifyContent="center" height="100vh">
-        <Stack width={300}>{View}</Stack>
-        <Stack spacing={2} alignItems="center" textAlign="center">
-          <Typography
+        {/* <Stack width={300}>{View}</Stack> */}
+        <Stack spacing={5} alignItems="center" textAlign="center">
+          {/* <Typography
             variant={isSmallScreen ? "s20w6c600" : "s18w6c700"}
             color="#fff"
           >
             Congratulations
-          </Typography>
+          </Typography> */}
+          <img src={CompleteIcon}></img>
           <Typography
             variant={isSmallScreen ? "s20w6c600" : "s18w6c700"}
             color="#F6FEF9"
+            width={"20vw"}
           >
             You have successfully finished the assessment
           </Typography>
@@ -43,7 +46,7 @@ const Completed = () => {
             gap={3}
             alignItems="center"
             justifyContent="space-between"
-            height="100vh"
+            // height="100vh"
             direction={"row"}
           >
             {verifyCandidateResponse.applicant.job.bDisplayReport && (
@@ -51,9 +54,9 @@ const Completed = () => {
                 View Graphical Report
               </Button>
             )}
-            <Button onClick={() => navigate("/")} variant="outlined">
+            {/* <Button onClick={() => navigate("/")} variant="outlined">
               Go Home
-            </Button>
+            </Button> */}
           </Stack>
         </Stack>
       </Stack>

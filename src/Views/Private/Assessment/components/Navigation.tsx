@@ -334,7 +334,7 @@ const Navigation = () => {
       )}
       <LoadingButton
         loading={isSubmitting}
-        disabled={!answer}
+        disabled={!answer ||   questionLoading }
         onClick={handleNext}
         size="large"
         variant="contained"

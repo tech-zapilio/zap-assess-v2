@@ -137,7 +137,7 @@ const Navigation = () => {
         variant="contained"
       >
         {screeningQ.length === currentQNumber + 1
-          ? "Resume Assessment"
+          ? "Start Assessment"
           : "Next"}
       </LoadingButton>
     </Stack>

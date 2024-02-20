@@ -160,6 +160,7 @@ const initAssessmentState: AssessmentAppType = {
       logoURL: "",
       welcomeVideoURL: "",
       termsConditions: "",
+      registedName:""
     },
     authToken: "",
     mapping: [],

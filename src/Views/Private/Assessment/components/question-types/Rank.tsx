@@ -54,7 +54,8 @@ const Rank = () => {
             <ul
               style={{ listStyleType: "none", padding: 0 }}
               {...provided.droppableProps}
-              ref={provided.innerRef}>
+              ref={provided.innerRef}
+            >
               {sorted.map((option, index) => (
                 <Draggable key={option} draggableId={option} index={index}>
                   {(provided: {
@@ -70,7 +71,8 @@ const Rank = () => {
                       style={{ listStyle: "none" }}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      ref={provided.innerRef}>
+                      ref={provided.innerRef}
+                    >
                       <Stack
                         my={2}
                         onMouseEnter={() => setSelectedOption(option)}
@@ -88,14 +90,17 @@ const Rank = () => {
                               : theme.palette.grey[300],
                           background:
                             selectedOption === option ? "#FFEAD5" : "#fcfcfd",
-                        }}>
+                        }}
+                      >
                         <Typography
                           color={
                             selectedOption === option
                               ? "#FB6514"
                               : theme.palette.grey[700]
                           }
-                          variant={isSmallScreen ? "s16w6c700" : "s20w6c800"}>
+                          variant={isSmallScreen ? "s16w6c700" : "s20w6c800"}
+                          fontWeight={400}
+                        >
                           {option}
                         </Typography>
                       </Stack>

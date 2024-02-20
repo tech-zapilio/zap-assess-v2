@@ -69,6 +69,7 @@ export type CustomerDetails = {
   logoURL: string;
   welcomeVideoURL: string;
   termsConditions: string;
+  registedName:string;
 };
 
 export type AuthToken = string;

@@ -127,6 +127,7 @@ declare module "@mui/material/styles" {
     s28w6c800?: React.CSSProperties;
 
     s14w4c400?: React.CSSProperties;
+    s14w5c800?: React.CSSProperties;
   }
 
   interface PaletteColor {
@@ -183,7 +184,7 @@ declare module "@mui/material/Typography" {
     s16w6c500: true;
     s16w4c600: true;
     s14w6c700: true;
-    s14w4c400:true;
+    s14w4c400: true;
     s14w5c700: true;
     s12w5c500: true;
     s20w6c700: true;
@@ -203,6 +204,7 @@ declare module "@mui/material/Typography" {
     s18w4c600: true;
     s14w4c600: true;
     s28w6c800: true;
+    s14w5c800: true;
   }
 }
 
@@ -292,6 +294,12 @@ const theme = responsiveFontSizes(
         fontWeight: 600,
         color: token.grey[500],
       },
+      s14w5c800: {
+        fontSize: 14,
+        fontWeight: 500,
+        color: token.grey[800],
+      },
+
       s14w4c400: {
         fontSize: 14,
         fontWeight: 400,
@@ -504,7 +512,8 @@ const theme = responsiveFontSizes(
         styleOverrides: {
           root: {
             borderRadius: 3.5,
-            boxShadow: "0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)",
+            boxShadow:
+              "0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)",
             padding: "16px",
           },
         },

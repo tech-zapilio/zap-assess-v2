@@ -94,7 +94,8 @@ const TheatreExperience = () => {
         question: currentQuestion.question._id,
         isComplete: true,
         timeElapsed: time_elapsed(startedOn),
-        response: currentQuestion.answer,
+        response:
+          currentQuestion.answer === "" ? "Skip" : currentQuestion.answer,
       });
       if (data) {
         dispatch({ type: ActionType.SET_COMPLETED });
@@ -126,10 +127,12 @@ const TheatreExperience = () => {
                 cursor: "pointer",
               }}
               alignItems="center"
-              justifyContent="center">
+              justifyContent="center"
+            >
               <Typography
                 variant="s14w5c400"
-                color={get_question_color(q)?.color}>
+                color={get_question_color(q)?.color}
+              >
                 {q.index}
               </Typography>
               {q.isSkipped && <Circle sx={{ fontSize: 3, color: "#fd5400" }} />}
@@ -143,7 +146,8 @@ const TheatreExperience = () => {
           direction="row"
           alignItems="center"
           justifyContent="center"
-          spacing={1}>
+          spacing={1}
+        >
           <Tooltip title="You can submit the assessment once all the question are visited.">
             <span>
               <LoadingButton
@@ -152,7 +156,8 @@ const TheatreExperience = () => {
                 onClick={handle_submit}
                 disabled={!show_submit_button()}
                 size="small"
-                variant="contained">
+                variant="contained"
+              >
                 Submit Assessment
               </LoadingButton>
             </span>

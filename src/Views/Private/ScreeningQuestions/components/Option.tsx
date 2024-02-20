@@ -30,9 +30,9 @@ const Option = (props: Props) => {
       }}
     >
       <Typography
-        variant={isSmallScreen ? "s16w6c700" : "s20w6c800"}
-        fontWeight={400}
-        color={selected ? "#FB6514" : theme.palette.grey[700]}
+        variant="s14w5c800" 
+        // fontWeight={400}
+        color={selected ? "#FB6514" : theme.palette.grey[800]}
       >
         {children}
       </Typography>

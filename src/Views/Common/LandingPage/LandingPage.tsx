@@ -177,7 +177,7 @@ const LandingPage = () => {
                     </Stack>
                     <Typography variant="s16w6c500">
                       {" "}
-                      {eventDetails.shortDesc}
+                      {eventDetails.shortDesc.split("(")[0]}
                     </Typography>
                   </Stack>
                 )}

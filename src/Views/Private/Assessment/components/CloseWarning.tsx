@@ -14,6 +14,8 @@ import { useDispatch } from "react-redux";
 import { ActionType } from "../../../../Store/action-types";
 import { useNavigate } from "react-router-dom";
 import BannerIcon from "../../../../Assets/SVGs/exit_assessment.svg";
+import { useAppSelector } from "../../../../App/hooks";
+import { useState } from "react";
 const modalStyles = {
   position: "absolute",
   top: "50%",
@@ -36,21 +38,29 @@ const CloseWarning = (props: ModalProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { open, setOpen } = props;
+  const { verifyCandidateResponse } = useAppSelector(
+    (state) => state.assessment_app
+  );
 
   function handleClose() {
     setOpen(false);
   }
   function handleExit() {
+    setLoading(true);
     dispatch({ type: ActionType.END_ASSESSMENT });
-    navigate("/assessment-completed");
+    // navigate(
+    //   `event/${verifyCandidateResponse.applicant.job._id}:${verifyCandidateResponse.applicant.job.jobCode}`
+    // );
+    window.open("https://www.skill.zapilio.com/", "_self");
   }
   const isSmallScreen = useMediaQuery("(max-width:600px)");
-
+  const [loading, setLoading] = useState(false);
   return (
     <Modal
       open={open}
       onClose={handleClose}
       slots={{ backdrop: Backdrop }}
+      sx={{ background: loading ? "rgba(16,24,40,0.8)" : "" }}
     >
       <Fade in={open}>
         <Box sx={modalStyles}>
@@ -86,7 +96,7 @@ const CloseWarning = (props: ModalProps) => {
                 variant={isSmallScreen ? "s28w6c800" : "s36w8c500"}
                 fontWeight={500}
               >
-                Think Twice Before Exiting!
+                You get three attempts{" "}
               </Typography>
               <img
                 src={BannerIcon}
@@ -94,14 +104,9 @@ const CloseWarning = (props: ModalProps) => {
                 style={{ maxWidth: "100%", maxHeight: "100%" }}
               />
             </Stack>
-            <Typography
-              mt={2}
-              variant="s16w4c600"
-            >
-              Leaving the assessment incomplete will cost you an attempt. You
-              can return to complete it if it is your first attempt. But if you
-              exit for the third time, you can't escape a <b> 12-day </b>wait
-              time before you try again. Make sure you choose wisely!
+            <Typography mt={2} variant="s16w4c600">
+              Stay on course with your assessment. More than two exits mean a
+              12-day wait for a retry.{" "}
             </Typography>
             <Stack
               direction="row"
@@ -112,12 +117,14 @@ const CloseWarning = (props: ModalProps) => {
               <Button
                 variant="outlined"
                 onClick={handleClose}
+                disabled={loading}
               >
                 Go Back
               </Button>{" "}
               <Button
                 variant="contained"
                 onClick={handleExit}
+                disabled={loading}
               >
                 Exit Assessment
               </Button>{" "}
