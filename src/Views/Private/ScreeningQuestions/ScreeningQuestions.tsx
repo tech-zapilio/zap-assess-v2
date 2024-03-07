@@ -31,9 +31,9 @@ const card_styles = {
 const modalStyles = {
   position: "absolute",
   top: "50%",
-  minHeight: 200,
+  minHeight: 700,
   px: 6,
-  width: { md: 700, xs: "70vw" },
+  width: { md: 700, xs: "70vw",xl:"50vw",lg:"50vw" },
   py: 4,
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -63,7 +63,7 @@ const ScreeningQuestions = () => {
     <Modal
       open={openScreeningQuestionsModal}
       slots={{ backdrop: Backdrop }}
-      sx={{ background: "rgba(16, 24, 40, 0.6)" }}
+      sx={{ background: "rgba(16, 24, 40, 0.6)"}}
     >
       <Fade in={openScreeningQuestionsModal}>
         <Box sx={modalStyles}>
