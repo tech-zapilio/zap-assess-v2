@@ -61,18 +61,18 @@ export default function BarGraph({ data }) {
         height={400}
         data={data}
         margin={{
-          top: -50,
+          top: 5,
           // right: 30,
           // left: 20,
-          bottom: 90,
+          bottom: 0,
         }}
       >
         <XAxis dataKey="skill" tickLine={false} tickCount={5} tick={<TiltedAxisTick />} interval={0} />
         {/* <YAxis axisLine={false} tickLine={false} tick={false} /> */}
         <Tooltip />
         <Legend verticalAlign="top"/>
-        <Bar dataKey="You" fill="#FF5400" label={<Label />} />
-        <Bar dataKey="maxScore" label={<Label />} fill="#424242" />
+        <Bar dataKey="You" fill="#FF5400" label={<Label />} name="Your Score"/>
+        <Bar dataKey="maxScore" label={<Label />} fill="#424242" name="Maximum Score"/>
       </BarChart>
     </ResponsiveContainer>
   );
